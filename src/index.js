@@ -21,6 +21,10 @@ ReactDOM.render(
     <Provider store={store}>
         <div>
             <ShowCurrentDate formatter={date => date.toString()}/>
+            <ShowCurrentDate prefix='++' formatter={date => date.toString()}/>
+            {/*<ShowCurrentDate prefix={3} formatter={date => date.toString()}/> wrong type*/}
+            {/*<ShowCurrentDate /> prop missing*/}
+            {/*<ShowCurrentDate formatter={() => ''} bla={3} /> unnecessary prop*/}
             <Counter prefix='>>> ' multiplicator={1} />
             <Counter multiplicator={5} />
             {/*<Counter  /> prop missing*/}
