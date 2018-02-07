@@ -1,16 +1,20 @@
+// @flow
 import {
     INCREASE_COUNTER,
     SAVE_COUNTER,
     RESTORE_COUNTER,
     RESET_SAVED_VALUE
 } from './counter-actions';
+import type {CounterState} from './counter-state';
+import type {CounterAction} from './counter-actions';
+import {hasCounterSaved} from './counter-selector';
 
-const initialState = {
+const initialState: CounterState = {
     counter: 1,
-    hasCounterSaved: false
+    memory: undefined
 };
 
-export function counterReducer(state = initialState, action) {
+export function counterReducer(state: CounterState = initialState, action: CounterAction): CounterState {
     switch (action.type) {
         case INCREASE_COUNTER:
             return {
@@ -20,11 +24,10 @@ export function counterReducer(state = initialState, action) {
         case SAVE_COUNTER:
             return {
                 ...state,
-                memory: state.counter,
-                hasCounterSaved: true
+                memory: state.counter
             };
         case RESTORE_COUNTER:
-            if (!state.hasCounterSaved) {
+            if (!hasCounterSaved(state)) {
                 return state;
             }
             return {
@@ -34,7 +37,7 @@ export function counterReducer(state = initialState, action) {
         case RESET_SAVED_VALUE:
             return {
                 ...state,
-                hasCounterSaved: false
+                memory: undefined
             };
         default:
             return state;

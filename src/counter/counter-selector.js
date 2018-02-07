@@ -1,2 +1,5 @@
-export const getCounter = ({counter}) => counter;
-export const hasCounterSaved = ({hasCounterSaved}) => hasCounterSaved;
+// @flow
+import type {CounterState} from './counter-state';
+
+export const getCounter = ({counter}: CounterState) => counter;
+export const hasCounterSaved = (state: CounterState) => state.memory !== undefined;

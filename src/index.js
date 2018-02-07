@@ -6,6 +6,7 @@ import {createStore} from 'redux';
 import registerServiceWorker from './registerServiceWorker';
 import {counterReducer} from './counter';
 import {ShowCurrentDate} from './show-date-inject-hoc-example';
+import {Counter} from './counter';
 const store = createStore(
     counterReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -20,6 +21,10 @@ ReactDOM.render(
     <Provider store={store}>
         <div>
             <ShowCurrentDate formatter={date => date.toString()}/>
+            <Counter prefix='>>> ' multiplicator={1} />
+            <Counter multiplicator={5} />
+            {/*<Counter  /> prop missing*/}
+            {/*<Counter multiplicator={5} bla={3} /> unnecessary prop*/}
         </div>
     </Provider>,
     rootElement
